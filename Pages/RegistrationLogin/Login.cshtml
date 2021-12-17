@@ -7,7 +7,7 @@
     LOG IN
 </div>
 
-<form class="Log_Pas_Field">
+<form id="LoginForm" class="Log_Pas_Field">
     <label for="Email_Field" class="Email_Label">Email</label>
     <input type="email" name="email" class="Email_Field" />
     <label for="Password_Field" class="Password_Label">Password</label>
@@ -20,3 +20,30 @@
         <a class="Forgot_Password" target="_blank" >Forgot your password?</a>
     </div>
 </form>
+
+@section Scripts
+{
+    <script>
+        $('#LoginForm').on('submit', function (e) {
+
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(e.target).entries());
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/RegistrationLogin/login',
+                data: data,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (err) {
+                    console.error(err);
+                },
+                complete: function (com) {
+                    window.location.href = "/Home/Index"
+                },
+            });
+
+        });
+    </script>
+}

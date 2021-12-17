@@ -1,0 +1,54 @@
+@page
+
+@{
+    Layout ="Shared/_Layout";
+}
+
+<form id="AddNews">
+    <div>
+        <div>
+            <input type="file" placeholder="AvatarImage" id="Preview">
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="text" placeholder="Rating">
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="text" placeholder="Title">
+        </div>
+    </div>
+    <div>
+        <textarea type="text" placeholder="Status">
+        </textarea>
+    </div>
+    <button type="submit">
+        ADD
+    </button>
+</form>
+
+@section Scripts {
+    <script>
+        $('#AddNews').on('submit', function (e) {
+
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/Home/AddNews',
+                data: new FormData($('#AddNews')[0]),
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $("#Preview").html(data);
+                },
+                error: function (err) {
+                    console.error(err);
+                },
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,71 @@
+@page
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<form id="SettingsForm">
+    <label>Username</label>
+    <div>
+        <div>
+            <input type="text">
+        </div>
+    </div>
+    <label>Avatar</label>
+    <div>
+        <div>
+            <input id="avatar" type="file">
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="password">
+        </div>
+    </div>
+    <div>
+    <div>
+        <input type="password">
+    </div>
+    </div>
+    <div>
+        <button type="submit">
+            Confirm
+        </button>
+    </div> 
+</form>
+
+@section Scripts {
+    <script>
+         $.ajax({
+            type: 'GET',
+            url: '/api/Home/currentUser',
+             success: function (result) {
+                if (result == null)
+                    window.location.href = "/RegistrationLogin/Login";
+                $(".Username").text(result.username);
+                if (result.avatar != null)
+                    document.getElementById("Avatar").src = "data:img/png;base64," + result.avatar;
+            },
+            error: function (err) {
+                console.error(err);
+            },
+        });
+        $('#SettingsForm').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/api/Home/Settings',
+                data: new FormData($('#SettingsForm')[0]),
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $("#avatar").html(data);
+                },
+                error: function (err) {
+                    console.error(err);
+                },
+            });
+
+        });
+    </script>
+}
