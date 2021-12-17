@@ -1,0 +1,22 @@
+@page
+@{
+    Layout = "Shared/_RegistrationLoginLayout";
+}
+
+<div class="Login">
+    LOG IN
+</div>
+
+<form class="Log_Pas_Field">
+    <label for="Email_Field" class="Email_Label">Email</label>
+    <input type="email" name="email" class="Email_Field" />
+    <label for="Password_Field" class="Password_Label">Password</label>
+    <input type="password" name="password" id="lgb" class="Password_Field"
+           pattern="^(?=.*[a-z])(?=.*[0-9]).{8,16}$" />
+    <div class="Submit_Button">
+        <button type="submit">Submit</button>
+    </div>
+    <div class="Forgot_Password">
+        <a class="Forgot_Password" target="_blank" >Forgot your password?</a>
+    </div>
+</form>
