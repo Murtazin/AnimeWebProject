@@ -20,6 +20,8 @@ footer {
     justify-content: center;
     background-color: #3B3535;
     margin-top: auto;
+    margin-bottom: -10px;
+    bottom: 0;
 }
 .Copyright {
     position: relative;
@@ -110,6 +112,7 @@ footer {
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    color: white !important;
 }
 .Login_Button:hover {
     outline: none;
@@ -188,3 +191,23 @@ footer {
     height: 314px;
     background-color: gray;
 }
+.Buttons_style {
+    display: block;
+    position: relative;
+    background: #3D8D94;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 24px;
+    color: white;
+    width: 116px;
+    height: 34px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    text-align: center;
+}
+
+    .Buttons_style:hover {
+        outline: none;
+        text-decoration: none;
+        color: white;
+    }
