@@ -46,3 +46,33 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script>
+        function SwitchButtons() {
+            if (IsAuth)
+                document.getElementById("Switch").innerHTML = document.getElementById("Switch2").innerHTML;
+            else
+                document.getElementById("Switch").innerHTML = document.getElementById("Switch1").innerHTML;
+        }
+    </script>
+
+<script>
+        function Logout() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/RegistrationLogin/logout',
+                success: function (result) {
+                    console.log(result);
+                    IsAuth = false;
+                    SwitchButtons();
+                },
+                error: function (err) {
+                    console.error(err);
+                },
+                complete: function (com) {
+                    window.location.href = "/home/index";
+                }
+            });
+        }
+    </script>
+@RenderSection("Scripts", required: false)
