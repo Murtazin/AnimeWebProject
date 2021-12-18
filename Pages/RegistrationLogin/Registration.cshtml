@@ -9,7 +9,7 @@
         </div>
 </div>
 
-<form class="Log_Pas_Field">
+<form id="RegistrationForm" class="Log_Pas_Field">
     <label for="Email_Field" class="Email_Label">Email</label>
     <input type="email" name="email" value=""  class="Email_Field" />
 
@@ -26,3 +26,29 @@
         <a class="Forgot_Password" target="_blank">Already have an account!</a>
     </div>
 </form>
+
+@section Scripts 
+{
+    <script>
+    $('#RegistrationForm').on('submit', function (e) {
+
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target).entries());
+        
+        $.ajax({
+            type: 'POST',
+            url: '/api/RegistrationLogin/register',
+            data: data,
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (err) {
+                console.error(err);
+            },
+            complete: function (com) {
+                window.location.href = "/Home/Index"
+                },
+            });
+        });
+    </script>
+}

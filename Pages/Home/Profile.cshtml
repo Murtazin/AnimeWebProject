@@ -1,0 +1,29 @@
+﻿@page
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="Username">
+</div>
+<img src="https://klike.net/uploads/posts/2021-01/1611131113_2.jpg"/>
+
+@section Scripts {
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: '/api/Home/currentUser',
+            success: function (result) {
+                console.log(result);
+                if (result == null)
+                    window.location.href = "/RegistrationLogin/login";
+                $(".Username").text(result.username);
+                if (result.avatar != null)
+                    document.getElementById("Avatar").src = "data:img/png;base64," + result.avatar;
+            },
+            error: function (err) {
+                console.error(err);
+            },
+        });
+    </script>
+}
